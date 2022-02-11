@@ -1,4 +1,4 @@
-demo -> https://simplex-noise-ribbon.vercel.app/
+demo -> 
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
