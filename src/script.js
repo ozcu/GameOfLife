@@ -7,8 +7,6 @@ const sketch = p5 => {
   const canvasWidth = p5.windowWidth
   const canvasHeight = p5.windowHeight
 
-  console.log(canvasWidth,canvasHeight)
-
   // make library globally available
   window.p5 = p5
 
@@ -19,6 +17,7 @@ const sketch = p5 => {
   cols = 1520/resolution
   rows = 720/resolution
 
+  console.log(rows,cols)
   //Array
   function make2DArray(cols,rows){
     let arr = new Array(cols)
@@ -44,6 +43,8 @@ const sketch = p5 => {
     sum -= grid[x][y]     
     return sum
   }
+
+
 
 
   // Setup function
@@ -81,6 +82,22 @@ const sketch = p5 => {
     }
 
 
+
+       //Draw with Mouse
+      p5.mouseDragged = () =>{
+
+      let mouseX = p5.floor(p5.mouseX/resolution)
+      let mouseY = p5.floor(p5.mouseY/resolution)
+
+      for(let i =-1 ; i<2 ;i++){
+        for(let j =-1; j<2 ;j++){
+
+          grid[mouseX+i][mouseY+j] = 1
+          
+        }
+      }
+
+    }
 
     //Compute next based on grid
     
