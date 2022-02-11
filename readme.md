@@ -1,4 +1,4 @@
-demo -> 
+demo -> https://game-of-life-jet-nu.vercel.app/
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
