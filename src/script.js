@@ -14,10 +14,10 @@ const sketch = p5 => {
 
   //Grid
   let grid,cols,rows
-  let resolution = 20
+  let resolution = 10
 
-  cols = 600/resolution
-  rows = 600/resolution
+  cols = 1520/resolution
+  rows = 720/resolution
 
   //Array
   function make2DArray(cols,rows){
@@ -33,7 +33,11 @@ const sketch = p5 => {
     let sum =0
     for(let i =-1 ; i<2 ;i++){
       for(let j =-1; j<2 ;j++){
-        sum += grid[x+i][y+j]
+
+        let col = (x+i+cols) % cols
+        let row = (y+j+rows) % rows
+
+        sum += grid[col][row]
       }
     }
     
@@ -87,24 +91,18 @@ const sketch = p5 => {
 
         let state = grid[i][j]
 
-        //Edges
-        if(i == 0 || i == cols-1 || j == 0 || j == rows-1 ){
+        //Count neighbors
+        let neighbors =  countNeighbors(grid,i,j)
+        
+        //Rules
+        if( state == 0 && neighbors == 3 ){
+          next[i][j] = 1
+        }else if( state == 1 && (neighbors < 2 || neighbors > 3) ){
+          next[i][j] = 0
+        }else {
           next[i][j] = state
-     
-        }else{
+        }
 
-            //Count neighbors
-            let neighbors =  countNeighbors(grid,i,j)
-            
-            //Rules
-            if( state == 0 && neighbors == 3 ){
-              next[i][j] = 1
-            }else if( state == 1 && (neighbors < 2 || neighbors > 3) ){
-              next[i][j] = 0
-            }else {
-              next[i][j] = state
-            }
-          }
         } 
      }
       // nexGen to become prevGen
